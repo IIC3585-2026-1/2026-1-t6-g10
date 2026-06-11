@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cambio de Láminas FIFA 2026</title>
+
+  <script src="campo-numerico.js" defer></script>
+  <script src="mi-slider.js" defer></script>
+  <script src="mi-switch.js" defer></script>
+  <script src="mi-breadcrumb.js" defer></script>
+  <script src="mi-accordion.js" defer></script>
+  <script src="mi-card.js" defer></script>
+  <script src="mi-horizontal-scroll.js" defer></script>
+
+  <style>
+    :root {
+      --fifa-blue: #0033a0;
+      --fifa-red: #d71920;
+      --ink: #10223d;
+      --paper: rgba(255, 255, 255, 0.82);
+      --paper-strong: rgba(255, 255, 255, 0.92);
+      --line: rgba(16, 34, 61, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Helvetica Neue", "Trebuchet MS", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0, 51, 160, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(215, 25, 32, 0.14), transparent 28%),
+        linear-gradient(180deg, #f7f9fc 0%, #eef2f8 45%, #f8f4f1 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(2px);
+      opacity: 0.7;
+    }
+
+    body::before {
+      top: -80px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      background: rgba(0, 51, 160, 0.08);
+    }
+
+    body::after {
+      bottom: 24px;
+      left: -70px;
+      width: 180px;
+      height: 180px;
+      background: rgba(215, 25, 32, 0.08);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    .hero {
+      padding: 28px 28px 22px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.68);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72));
+      box-shadow: 0 20px 50px rgba(16, 34, 61, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--fifa-red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 3.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 14px 0 0;
+      color: rgba(16, 34, 61, 0.8);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    mi-breadcrumb {
+      display: block;
+      margin: 18px 0 26px;
+    }
+
+    section {
+      padding: 24px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: 0 14px 36px rgba(16, 34, 61, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    section h2 {
+      margin: 0 0 16px;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 3px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--fifa-blue), var(--fifa-red));
+    }
+
+    mi-horizontal-scroll {
+      display: block;
+      margin-top: 10px;
+      padding: 6px 0 2px;
+    }
+
+    mi-card {
+      --card-width: 150px;
+      --card-height: 200px;
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">FIFA World Cup 2026</p>
+      <h1>Intercambio de Láminas</h1>
+      <p class="lead">Un espacio limpio para encontrar cambios, revisar láminas repetidas y explorar colecciones por país con un ambiente visual inspirado en el mundial.</p>
+    </header>
+
+    <mi-breadcrumb>
+      <mi-breadcrumb-item href="#">Inicio</mi-breadcrumb-item>
+      <mi-breadcrumb-item href="#">Intercambios</mi-breadcrumb-item>
+      <mi-breadcrumb-item>Buscar cambio</mi-breadcrumb-item>
+    </mi-breadcrumb>
+
+    <section>
+      <h2>Configuración del intercambio</h2>
+
+      <campo-numerico value="0">
+        Láminas para cambiar:
+      </campo-numerico>
+
+      <br><br>
+
+      <mi-slider min="1" max="100" value="20" step="1"></mi-slider>
+
+      <br>
+
+      <mi-switch>
+        Mostrar solo usuarios con láminas que necesito
+      </mi-switch>
+    </section>
+
+    <section>
+      <h2>Mis láminas repetidas</h2>
+
+      <mi-horizontal-scroll>
+        <mi-card player="Mbappé" country="Francia">FRA7</mi-card>
+        <mi-card player="Messi" country="Argentina">ARG10</mi-card>
+        <mi-card player="Vinicius" country="Brasil">BRA3</mi-card>
+        <mi-card player="Yamal" country="España">ESP5</mi-card>
+        <mi-card player="Ronaldo" country="Portugal">POR7</mi-card>
+        <mi-card player="Kimmich" country="Alemania">GER2</mi-card>
+        <mi-card player="Mbappé" country="Francia">FRA7</mi-card>
+        <mi-card player="Messi" country="Argentina">ARG10</mi-card>
+        <mi-card player="Vinicius" country="Brasil">BRA3</mi-card>
+        <mi-card player="Yamal" country="España">ESP5</mi-card>
+        <mi-card player="Ronaldo" country="Portugal">POR7</mi-card>
+        <mi-card player="Kimmich" country="Alemania">GER2</mi-card>
+        <mi-card player="Chiesa" country="Italia">ITA4</mi-card>
+        <mi-card player="De Jong" country="Países Bajos">NED6</mi-card>
+        <mi-card player="Foden" country="Inglaterra">ENG3</mi-card>
+        <mi-card player="Modric" country="Croacia">CRO5</mi-card>
+        <mi-card player="Endo" country="Japón">JPN1</mi-card>
+        <mi-card player="Pulisic" country="Estados Unidos">USA2</mi-card>
+        <mi-card player="Vela" country="México">MEX4</mi-card>
+        <mi-card player="Dzyuba" country="Rusia">RUS3</mi-card>
+        <mi-card player="Leckie" country="Australia">AUS5</mi-card>
+      </mi-horizontal-scroll>
+    </section>
+
+    <section>
+      <h2>Láminas por país</h2>
+
+      <mi-accordion>
+        <mi-accordion-item>
+          <span slot="heading">Francia</span>
+          <p>FRA1, FRA2, FRA3, FRA4, FRA5</p>
+          <p>FRA6, FRA7, FRA8, FRA9, FRA10</p>
+          <p>FRA11, FRA12, FRA13, FRA14, FRA15</p>
+          <p>FRA16, FRA17, FRA18, FRA19, FRA20</p>
+        </mi-accordion-item>
+
+        <mi-accordion-item>
+          <span slot="heading">Argentina</span>
+          <p>ARG1, ARG2, ARG3, ARG4, ARG5</p>
+          <p>ARG6, ARG7, ARG8, ARG9, ARG10</p>
+        </mi-accordion-item>
+
+        <mi-accordion-item>
+          <span slot="heading">Brasil</span>
+          <p>BRA1, BRA2, BRA3, BRA4, BRA5</p>
+          <p>BRA6, BRA7, BRA8, BRA9, BRA10</p>
+        </mi-accordion-item>
+      </mi-accordion>
+    </section>
+  </main>
+</body>
+
+</html>
