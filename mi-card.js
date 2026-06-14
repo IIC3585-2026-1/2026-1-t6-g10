@@ -128,11 +128,59 @@ class MiCard extends HTMLElement {
           font-weight: 700;
         }
 
+        :host([rare="true"]) .card {
+          border-color: #ffd700;
+          box-shadow:
+            0 16px 28px rgba(0, 0, 0, 0.22),
+            0 0 16px rgba(255, 215, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.28);
+        }
+
+        .holographic {
+          position: absolute;
+          inset: 0;
+          z-index: 10;
+          background: linear-gradient(
+            115deg,
+            transparent 10%,
+            rgba(255, 255, 255, 0.6) 20%,
+            rgba(255, 215, 0, 0.5) 25%,
+            transparent 30%,
+            transparent 45%,
+            rgba(255, 0, 128, 0.4) 50%,
+            rgba(0, 255, 255, 0.4) 55%,
+            transparent 60%
+          );
+          background-size: 300% 300%;
+          mix-blend-mode: color-dodge;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        :host([rare="true"]) .holographic {
+          opacity: 1;
+          animation: holo-shimmer 6s infinite linear;
+        }
+
+        @keyframes holo-shimmer {
+          0% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
+        }
+
         :host(:hover) .card,
         :host(:focus-visible) .card {
           transform: translateY(-4px);
           box-shadow:
             0 20px 34px rgba(0, 0, 0, 0.26),
+            inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        }
+
+        :host([rare="true"]:hover) .card,
+        :host([rare="true"]:focus-visible) .card {
+          box-shadow:
+            0 20px 34px rgba(0, 0, 0, 0.26),
+            0 0 24px rgba(255, 215, 0, 0.7),
             inset 0 1px 0 rgba(255, 255, 255, 0.34);
         }
 
@@ -150,6 +198,7 @@ class MiCard extends HTMLElement {
       </style>
 
       <div class="card" part="card">
+        <div class="holographic"></div>
         <div class="code" part="code">
           <slot>Lámina</slot>
         </div>

@@ -13,38 +13,85 @@ class MiAccordionItem extends HTMLElement {
 
     shadow.innerHTML = `
       <style>
+        :host {
+          display: block;
+          font-family: var(--font-family, sans-serif);
+        }
+
         .item {
-          border: 1px solid #ccc;
-          margin-bottom: 6px;
-          border-radius: 6px;
+          border: 1px solid var(--line, #ccc);
+          margin-bottom: 8px;
+          border-radius: 12px;
           overflow: hidden;
+          background: var(--paper-strong, #fff);
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .item:focus-within {
+          border-color: var(--fifa-blue, #0033a0);
+          box-shadow: 0 4px 12px rgba(0, 51, 160, 0.1);
         }
 
         .heading {
-          background: #eeeeee;
-          padding: 10px;
+          background: transparent;
+          padding: 14px 18px;
           cursor: pointer;
-          font-weight: bold;
+          font-weight: 600;
+          color: var(--ink, #10223d);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background 0.2s;
+        }
+
+        .heading:hover {
+          background: rgba(0, 51, 160, 0.04);
+        }
+
+        .icon {
+          transition: transform 0.3s ease;
+          color: var(--fifa-red, #d71920);
+          font-size: 0.8rem;
+        }
+
+        .abierto .icon {
+          transform: rotate(180deg);
         }
 
         .contenido {
-          display: none;
-          padding: 10px;
-          background: white;
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.3s ease;
+          background: transparent;
         }
 
-        .abierto {
-          display: block;
+        .abierto + .contenido {
+          grid-template-rows: 1fr;
+        }
+
+        .contenido-inner {
+          overflow: hidden;
+          padding: 0 18px;
+          opacity: 0;
+          transition: opacity 0.3s ease, padding 0.3s ease;
+        }
+
+        .abierto + .contenido .contenido-inner {
+          opacity: 1;
+          padding: 4px 18px 18px;
         }
       </style>
 
       <div class="item">
-        <div class="heading">
+        <div class="heading" role="button" tabindex="0" aria-expanded="false">
           <slot name="heading">País</slot>
+          <span class="icon">▼</span>
         </div>
 
         <div class="contenido">
-          <slot></slot>
+          <div class="contenido-inner">
+            <slot></slot>
+          </div>
         </div>
       </div>
     `;
@@ -54,8 +101,18 @@ class MiAccordionItem extends HTMLElement {
   }
 
   connectedCallback() {
-    this.heading.addEventListener("click", () => {
-      this.contenido.classList.toggle("abierto");
+    const toggle = () => {
+      const isExpanded = this.heading.getAttribute("aria-expanded") === "true";
+      this.heading.setAttribute("aria-expanded", !isExpanded);
+      this.heading.classList.toggle("abierto");
+    };
+
+    this.heading.addEventListener("click", toggle);
+    this.heading.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
     });
   }
 }

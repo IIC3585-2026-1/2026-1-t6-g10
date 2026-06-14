@@ -9,13 +9,50 @@ class MiSlider extends HTMLElement {
         .contenedor {
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          font-family: Arial, sans-serif;
+          gap: 12px;
+          font-family: var(--font-family, sans-serif);
         }
 
         .valor {
-          font-weight: bold;
-          color: darkgreen;
+          font-weight: 600;
+          color: var(--fifa-blue, #0033a0);
+          font-size: 1.05rem;
+        }
+
+        input[type="range"] {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          background: transparent;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+          background: var(--fifa-red, #d71920);
+          cursor: pointer;
+          margin-top: -6px;
+          box-shadow: 0 2px 6px rgba(215, 25, 32, 0.4);
+          border: 2px solid white;
+          transition: transform 0.1s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+          transform: scale(1.15);
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+          width: 100%;
+          height: 8px;
+          cursor: pointer;
+          background: var(--line, #e2e8f0);
+          border-radius: 4px;
+        }
+
+        input[type="range"]:focus {
+          outline: none;
         }
       </style>
 

@@ -20,6 +20,7 @@
       --paper: rgba(255, 255, 255, 0.82);
       --paper-strong: rgba(255, 255, 255, 0.92);
       --line: rgba(16, 34, 61, 0.08);
+      --font-family: "Avenir Next", "Helvetica Neue", "Trebuchet MS", sans-serif;
     }
 
     * {
@@ -30,11 +31,13 @@
       margin: 0;
       min-height: 100vh;
       color: var(--ink);
-      font-family: "Avenir Next", "Helvetica Neue", "Trebuchet MS", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(0, 51, 160, 0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(215, 25, 32, 0.14), transparent 28%),
-        linear-gradient(180deg, #f7f9fc 0%, #eef2f8 45%, #f8f4f1 100%);
+      font-family: var(--font-family);
+      background-color: #10223d;
+      background-image: url('fondo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
 
     body::before,
@@ -105,8 +108,8 @@
     }
 
     mi-breadcrumb {
-      display: block;
-      margin: 18px 0 26px;
+      display: flex;
+      margin: 18px 0 26px 24px;
     }
 
     section {
@@ -141,6 +144,21 @@
       padding: 6px 0 2px;
     }
 
+    .form-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 8px 0;
+    }
+
+    mi-accordion p {
+      margin: 8px 0;
+      color: rgba(16, 34, 61, 0.8);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
     mi-card {
       --card-width: 150px;
       --card-height: 200px;
@@ -165,30 +183,28 @@
     <section>
       <h2>Configuración del intercambio</h2>
 
-      <campo-numerico value="0">
-        Láminas para cambiar:
-      </campo-numerico>
+      <div class="form-layout">
+        <campo-numerico value="0">
+          Láminas para cambiar:
+        </campo-numerico>
 
-      <br><br>
+        <mi-slider min="1" max="100" value="20" step="1"></mi-slider>
 
-      <mi-slider min="1" max="100" value="20" step="1"></mi-slider>
-
-      <br>
-
-      <mi-switch>
-        Mostrar solo usuarios con láminas que necesito
-      </mi-switch>
+        <mi-switch>
+          Mostrar solo usuarios con láminas que necesito
+        </mi-switch>
+      </div>
     </section>
 
     <section>
       <h2>Mis láminas repetidas</h2>
 
       <mi-horizontal-scroll>
-        <mi-card player="Mbappé" country="Francia">FRA7</mi-card>
-        <mi-card player="Messi" country="Argentina">ARG10</mi-card>
+        <mi-card player="Mbappé" country="Francia" rare="true">FRA7</mi-card>
+        <mi-card player="Messi" country="Argentina" rare="true">ARG10</mi-card>
         <mi-card player="Vinicius" country="Brasil">BRA3</mi-card>
         <mi-card player="Yamal" country="España">ESP5</mi-card>
-        <mi-card player="Ronaldo" country="Portugal">POR7</mi-card>
+        <mi-card player="Ronaldo" country="Portugal" rare="true">POR7</mi-card>
         <mi-card player="Kimmich" country="Alemania">GER2</mi-card>
         <mi-card player="Mbappé" country="Francia">FRA7</mi-card>
         <mi-card player="Messi" country="Argentina">ARG10</mi-card>

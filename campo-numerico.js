@@ -9,20 +9,52 @@ class CampoNumerico extends HTMLElement {
         .campo {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-family: Arial, sans-serif;
+          gap: 12px;
+          font-family: var(--font-family, sans-serif);
+          color: var(--ink, #10223d);
+          font-weight: 500;
         }
 
         input {
-          width: 60px;
-          padding: 6px;
+          width: 64px;
+          padding: 8px;
           text-align: center;
+          border: 2px solid var(--line, #ccc);
+          border-radius: 8px;
+          font-size: 1rem;
+          font-family: inherit;
+          color: inherit;
+          background: var(--paper-strong, #fff);
+          transition: border-color 0.2s;
+        }
+
+        input:focus {
+          outline: none;
+          border-color: var(--fifa-blue, #0033a0);
         }
 
         button {
-          width: 28px;
-          height: 28px;
+          width: 34px;
+          height: 34px;
           cursor: pointer;
+          border: none;
+          border-radius: 8px;
+          background: var(--fifa-blue, #0033a0);
+          color: white;
+          font-size: 1.2rem;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+          background: var(--fifa-red, #d71920);
+        }
+
+        button:active {
+          transform: scale(0.95);
         }
       </style>
 
